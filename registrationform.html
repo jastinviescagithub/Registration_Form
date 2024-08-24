@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Writing DOM</title>
+</head>
+<body>
+
+<div id="app"></div>
+
+<script>
+    //  form element
+    const form = document.createElement('form');
+
+    // Function to create input fields
+    function createInputField(labelText, inputType, inputName, labelId) {
+        const label = document.createElement('label');
+        label.textContent = labelText;
+        label.htmlFor = inputName;
+        label.id = labelId; 
+        const input = document.createElement('input');
+        input.type = inputType;
+        input.name = inputName;
+        input.id = inputName;
+        input.required = true;
+
+        form.appendChild(label);
+        form.appendChild(input);
+        form.appendChild(document.createElement('br'));
+    }
+
+    // input fields
+    createInputField('First Name: ', 'text', 'firstName', 'firstNameLabel');
+    createInputField('Last Name: ', 'text', 'lastName', 'lastNameLabel');
+    createInputField('Email Address: ', 'email', 'email', 'emailLabel');
+    createInputField('Password: ', 'password', 'password', 'passwordLabel');
+    createInputField('Confirm Password: ', 'password', 'confirmPassword', 'confirmPasswordLabel');
+
+    //  warning message for invalid email
+    const emailWarning = document.createElement('span');
+    emailWarning.style.color = 'red';
+    emailWarning.style.display = 'none';
+    emailWarning.id = 'emailWarning';
+    emailWarning.textContent = 'Please enter a valid email address.';
+    form.appendChild(emailWarning);
+    form.appendChild(document.createElement('br'));
+
+    // Email validation function
+    form.addEventListener('input', function(event) {
+        if (event.target.id === 'email') {
+            const emailInput = event.target;
+            const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}(?:\.[a-zA-Z]{2,})?$/;
+            if (!emailPattern.test(emailInput.value)) {
+                emailWarning.style.display = 'inline';
+            } else {
+                emailWarning.style.display = 'none';
+            }
+        }
+    });
+
+    // Append the form to the app div
+    document.getElementById('app').appendChild(form);
+
+    //  background image to the div with ID "app"
+    const appDiv = document.getElementById('app');
+    appDiv.style.backgroundImage = "url('ptsu.jpg')";
+    appDiv.style.backgroundSize = "cover"; 
+    appDiv.style.backgroundRepeat = "no-repeat";
+    appDiv.style.backgroundPosition = "center"; 
+    appDiv.style.width = "100%"; 
+    appDiv.style.height = "100vh"; 
+    appDiv.style.margin = "0"; 
+
+    // Customize and position the input field for the first name
+    const firstNameInput = document.getElementById('firstName');
+    firstNameInput.style.width = "265px"; 
+    firstNameInput.style.height = "20px";
+    firstNameInput.style.backgroundColor = "#f0f8ff"; 
+    firstNameInput.style.color = "#00008b"; 
+    firstNameInput.style.fontSize = "16px"; 
+    firstNameInput.style.border = "2px solid #00008b";
+    firstNameInput.style.borderRadius = "5px"; 
+    firstNameInput.style.padding = "5px"; 
+    firstNameInput.style.position = "absolute"; 
+    firstNameInput.style.top = "210px"; 
+    firstNameInput.style.left = "230px"; 
+
+    // Positioning the label for the first name
+    const firstNameLabel = document.getElementById('firstNameLabel');
+    firstNameLabel.style.position = "absolute"; // Use absolute positioning
+    firstNameLabel.style.top = "190px"; 
+    firstNameLabel.style.left = "230px"; 
+    firstNameLabel.style.color = "white"; 
+     
+    // Customize and position the input field for the last name
+    const lastNameInput = document.getElementById('lastName');
+    lastNameInput.style.width = "265px";
+    lastNameInput.style.height = "20px";
+    lastNameInput.style.backgroundColor = "#f0f8ff"; 
+    lastNameInput.style.color = "#00008b"; 
+    lastNameInput.style.fontSize = "16px"; 
+    lastNameInput.style.border = "2px solid #00008b"; 
+    lastNameInput.style.borderRadius = "5px"; 
+    lastNameInput.style.padding = "5px"; 
+    lastNameInput.style.position = "absolute"; 
+    lastNameInput.style.top = "270px"; 
+    lastNameInput.style.left = "230px"; 
+
+    // Positioning the label for the last name
+    const lastNameLabel = document.getElementById('lastNameLabel');
+    lastNameLabel.style.position = "absolute"; // Use absolute positioning
+    lastNameLabel.style.top = "250px";
+    lastNameLabel.style.left = "230px"; 
+    lastNameLabel.style.color = "white";
+    
+     // Customize and position the input field for the email address
+     const emailInput = document.getElementById('email');
+     emailInput.style.width = "265px"; 
+     emailInput.style.height = "20px"; 
+     emailInput.style.backgroundColor = "#f0f8ff"; 
+     emailInput.style.color = "#00008b"; 
+     emailInput.style.fontSize = "16px"; 
+     emailInput.style.border = "2px solid #00008b"; 
+     emailInput.style.borderRadius = "5px"; 
+     emailInput.style.padding = "5px";
+     emailInput.style.position = "absolute"; 
+     emailInput.style.top = "330px"; 
+     emailInput.style.left = "230px"; 
+ 
+     // Positioning the label for the email address
+     const emailLabel = document.getElementById('emailLabel');
+     emailLabel.style.position = "absolute"; 
+     emailLabel.style.top = "310px";
+     emailLabel.style.left = "230px"; 
+     emailLabel.style.color = "white";
+
+      // Customize and position the input field for the password
+    const passwordInput = document.getElementById('password');
+    passwordInput.style.width = "265px";
+    passwordInput.style.height = "20px"; 
+    passwordInput.style.backgroundColor = "#f0f8ff"; 
+    passwordInput.style.color = "#00008b"; 
+    passwordInput.style.fontSize = "16px"; 
+    passwordInput.style.border = "2px solid #00008b"; 
+    passwordInput.style.borderRadius = "5px"; 
+    passwordInput.style.padding = "5px"; 
+    passwordInput.style.position = "absolute"; 
+    passwordInput.style.top = "390px";
+    passwordInput.style.left = "230px"; 
+
+    // Positioning the label for the password
+    const passwordLabel = document.getElementById('passwordLabel');
+    passwordLabel.style.position = "absolute"; // Use absolute positioning
+    passwordLabel.style.top = "370px"; 
+    passwordLabel.style.left = "230px"; 
+    passwordLabel.style.color = "white";  
+
+        // Customize and position the input field for the confirm password
+    const confirmPasswordInput = document.getElementById('confirmPassword');
+    confirmPasswordInput.style.width = "265px"; 
+    confirmPasswordInput.style.height = "20px";
+    confirmPasswordInput.style.backgroundColor = "#f0f8ff"; 
+    confirmPasswordInput.style.color = "#00008b"; 
+    confirmPasswordInput.style.fontSize = "16px"; 
+    confirmPasswordInput.style.border = "2px solid #00008b"; 
+    confirmPasswordInput.style.borderRadius = "5px"; 
+    confirmPasswordInput.style.padding = "5px"; 
+    confirmPasswordInput.style.position = "absolute"; 
+    confirmPasswordInput.style.top = "450px";
+    confirmPasswordInput.style.left = "230px"; 
+
+    // Positioning the label for the confirm password
+    const confirmPasswordLabel = document.getElementById('confirmPasswordLabel');
+    confirmPasswordLabel.style.position = "absolute";
+    confirmPasswordLabel.style.top = "430px"; 
+    confirmPasswordLabel.style.left = "230px";
+    confirmPasswordLabel.style.color = "white"; 
+
+   
+</script>
+
+</body>
+</html>
